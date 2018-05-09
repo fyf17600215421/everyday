@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./icon/iconfont.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="head">
+            <span></span>
+            <p><span><i>1</i> 小时达</span>中关村软件园南站</p>
+            <em class="iconfont icon-xiangxia"></em>
+            <dl>
+                <dd class="iconfont icon-sousuo"></dd>
+                <dt>搜索</dt>
+            </dl>
+        </div>
+        <nav class="nav">
+            <div class="ulul" style="touch-action: none;">
+                <div class="list" style="width: 529.96px; transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1); transition-duration: 0ms; transform: translate(0px, 0px) translateZ(0px);">
+                    <span class="active">水果</span>
+                    <span>蔬菜</span>
+                    <span>乳品</span>
+                    <span>肉蛋</span>
+                    <span>零食</span>
+                    <span>热卖</span>
+                    <span>精品</span>
+                    <span>养生</span>
+                </div>
+            </div>
+            <span class="iconfont icon-gongzuo"></span>
+        </nav>
+    </header>
+    <div class="main"></div>
+
+
+    <footer class="footer">
+        <dl class="show">
+            <dd class="iconfont icon-iconhuidaoshouye"></dd>
+            <dt>首页</dt>
+        </dl>
+        <dl class="">
+            <dd class="iconfont icon-shouqi-01"></dd>
+            <dt>热门</dt>
+        </dl>
+        <dl class="">
+            <dd class="iconfont icon-dianzan"></dd>
+            <dt>活动</dt>
+        </dl>
+        <dl class="">
+            <dd class="iconfont icon-icongerenzhongxin-01"></dd>
+            <dt>我的</dt>
+        </dl>
+    </footer>
+
+
+    <script src="./libs/bscroll.js"></script>
+    <script>
+        new BScroll(".ulul", {
+            scrollY: false,
+            scrollX: true
+        })
+    </script>
+</body>
+
+</html>

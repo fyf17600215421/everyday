@@ -66,11 +66,29 @@
 
 
     <script src="./libs/bscroll.js"></script>
+    <script src="./libs/jquery.min.js"></script>
+
     <script>
         new BScroll(".ulul", {
             scrollY: false,
             scrollX: true
-        })
+        });
+        $(function() {
+            $.ajax({
+                url: '/data',
+                dataType: 'json',
+                success: function(data) {
+                    milkList(data.products);
+                },
+                error: function() {
+                    console.log('not find data');
+                }
+            })
+        });
+
+        function milkList(data) {
+            console.log(data);
+        }
     </script>
 </body>
 

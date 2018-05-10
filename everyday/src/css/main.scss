@@ -109,3 +109,75 @@ body {
         }
     }
 }
+
+.main div {
+    width: 100%;
+    height: 100%;
+}
+
+.frech-data {
+    width: 100%;
+    height: 100%;
+    .frech-wrapper {
+        height: auto;
+        .banner {
+            height: 2rem;
+            background: #fcc;
+        }
+    }
+}
+
+.listContent {
+    width: 100%;
+    height: auto;
+    .listWrap {
+        h3 {
+            line-height: .3rem;
+            color: #ed518b;
+            text-align: center;
+        }
+        .list-item {
+            padding: .08rem;
+            display: flex;
+            .listImg {
+                width: .95rem;
+                height: .95rem;
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+            .listText {
+                flex: 1;
+                padding-top: .08rem;
+                padding-left: .08rem;
+                overflow: hidden;
+                p {
+                    line-height: .18rem;
+                    &:nth-child(1) {
+                        color: #222;
+                        font-size: .15rem;
+                    }
+                    &:nth-child(2) {
+                        color: #999;
+                        font-size: .14rem;
+                    }
+                }
+                .tag-span {
+                    padding-top: .04rem;
+                    span {
+                        padding: 0 .01rem;
+                        border: .01rem solid #ed518b;
+                        color: #ed518b;
+                        font-size: .12rem;
+                        border-radius: .02rem;
+                    }
+                }
+                .prise {
+                    line-height: .28rem;
+                    color: #ed518b;
+                }
+            }
+        }
+    }
+}

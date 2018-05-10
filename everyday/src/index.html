@@ -8,8 +8,9 @@
     <title>Document</title>
     <link rel="stylesheet" href="./css/common.css">
     <link rel="stylesheet" href="./css/reset.css">
-    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/swiper-3.4.2.min.css">
     <link rel="stylesheet" href="./icon/iconfont.css">
+    <link rel="stylesheet" href="./css/main.css">
 </head>
 
 <body>
@@ -40,8 +41,42 @@
         </nav>
     </header>
     <div class="main">
-        <div class="banner"></div>
-        <div class="listContent"></div>
+        <div class="main-swiper swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide frech-data">
+                    <div class="frech-wrapper">
+                        <div class="banner">
+                        </div>
+                        <div class="listContent">
+                            <div class="listWrap">
+                            </div>
+                        </div>
+                        <script type='text/x-handlebars-template' id="list">
+                            {{#each this}} {{#addindex @index 0}}
+                            <h3>{{name}}</h3>
+                            {{else}} {{#addindex 'undefined' @index}}
+                            <div class="list-item">
+                                <div class="listImg">
+                                    <img src="{{image}}" alt="">
+                                </div>
+                                <div class="listText">
+                                    <p>午餐肉200克</p>
+                                    <p>全新公寓附近卡卡</p>
+                                    <div class="tag-span">
+                                        <span>超值特惠</span>
+                                        <span>超值特惠</span>
+                                    </div>
+                                    <p class="prise">$122</p>
+                                </div>
+                            </div>
+                            {{/addindex}} {{/addindex}} {{/each}}
+                        </script>
+                    </div>
+                </div>
+                <div class="swiper-slide">222</div>
+                <div class="swiper-slide">33333</div>
+            </div>
+        </div>
     </div>
 
 
@@ -67,12 +102,40 @@
 
     <script src="./libs/bscroll.js"></script>
     <script src="./libs/jquery.min.js"></script>
+    <script src="./libs/handlebars.min.js"></script>
+    <script src="./libs/swiper.min.js"></script>
+    <script src="./libs/iscroll.js"></script>
 
     <script>
-        new BScroll(".ulul", {
+        var Bscroll = new BScroll(".ulul", {
             scrollY: false,
-            scrollX: true
+            scrollX: true,
+            click: true
         });
+
+        var Bscroll = new BScroll('.frech-data', {
+            scrollY: true,
+            scrollX: false
+        })
+
+
+        //大的swiper
+        var mySwiper = new Swiper('.main-swiper', {
+            on: {
+                slideChangeTransitionStart: function() {
+                    var ind = this.activeIndex;
+                    $('.list span').eq(ind).addClass('active').siblings().removeClass('active');
+                }
+            }
+        });
+        //tab点击切换swiper
+        $('.list').on('click', 'span', function() {
+            var ind = $(this).index();
+            $(this).addClass('active').siblings().removeClass('active');
+            mySwiper.slideTo(ind);
+        });
+
+        //请求数据
         $(function() {
             $.ajax({
                 url: '/data',
@@ -86,8 +149,29 @@
             })
         });
 
+        //渲染页面
         function milkList(data) {
             console.log(data);
+            var list = $('#list').html();
+            Handlebars.registerHelper("addindex", function(ind, max, options) {
+                if (ind !== 'undefined') {
+
+                    if (ind == 0) {
+                        return options.fn(this);
+                    } else {
+                        return options.inverse(this);
+                    }
+                } else {
+                    if (max < 10) {
+                        return options.fn(this);
+                    } else {
+                        return options.inverse(this);
+                    }
+                }
+            })
+            var template = Handlebars.compile(list);
+            var html = template(data);
+            $('.listWrap').append(html);
         }
     </script>
 </body>

@@ -7,6 +7,7 @@ gulp.task("default", function() {
         .pipe(webserver({
             port: "3333",
             livereload: true,
+            open: true,
             middleware: function(req, res, next) {
 
                 next();

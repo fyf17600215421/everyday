@@ -79,7 +79,7 @@ body {
   display: flex;
 }
 
-.header .nav .ulul .list span {
+.header .nav .ulul .list li {
   flex-shrink: 0;
   padding: .1rem 0;
   margin: 0 .3rem;
@@ -87,12 +87,12 @@ body {
   box-sizing: border-box;
 }
 
-.header .nav .ulul .list span.active {
+.header .nav .ulul .list li.active {
   color: #ed518b;
   border-bottom: 3px solid #ed518b;
 }
 
-.header .nav span.iconfont {
+.header .nav li.iconfont {
   width: 20%;
   text-indent: 11%;
   line-height: .4rem;

@@ -25,16 +25,16 @@
         </div>
         <nav class="nav">
             <div class="ulul" style="touch-action: none;">
-                <div class="list" style="width: 529.96px; transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1); transition-duration: 0ms; transform: translate(0px, 0px) translateZ(0px);">
-                    <span class="active">水果</span>
-                    <span>蔬菜</span>
-                    <span>乳品</span>
-                    <span>肉蛋</span>
-                    <span>零食</span>
-                    <span>热卖</span>
-                    <span>精品</span>
-                    <span>养生</span>
-                </div>
+                <ul class="list" style="width: 529.96px; transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1); transition-duration: 0ms; transform: translate(0px, 0px) translateZ(0px);">
+                    <li class="active">水果</li>
+                    <li>蔬菜</li>
+                    <li>乳品</li>
+                    <li>肉蛋</li>
+                    <li>零食</li>
+                    <li>热卖</li>
+                    <li>精品</li>
+                    <li>养生</li>
+                </ul>
             </div>
             <span class="iconfont icon-gongzuo"></span>
         </nav>
@@ -67,10 +67,32 @@
 
     <script src="./libs/bscroll.js"></script>
     <script>
-        new BScroll(".ulul", {
+        var list = document.querySelector(".list");
+        var lis = list.querySelectorAll("li");
+        var sum = 0;
+        for (let i = 0; i < lis.length; i++) {
+            sum += lis[i].offsetWidth;
+            console.log(lis[i])
+
+            lis[i].onclick = function() {
+                change(i);
+            }
+
+        }
+
+        var myScroll = new BScroll(".ulul", {
             scrollY: false,
-            scrollX: true
+            scrollX: true,
+            click: true
         })
+
+        function change(ind) {
+            for (var i = 0; i < lis.length; i++) {
+                lis[i].classList.remove("active")
+            }
+            lis[ind].classList.add("active")
+            myScroll.scrollToElement(lis[ind], 100, true, true)
+        }
     </script>
 </body>
 

@@ -10,9 +10,7 @@ function initSwiper(data) {
     var source = $("#swiper-tpl").html();
     var template = Handlebars.compile(source);
     var html = template(data);
-    console.log(html)
-    $(".swiper-wrapper").html(html);
-
+    $("#banner").html(html);
     var mySwiper = new Swiper('.banner', {
         loop: true,
         pagination: {

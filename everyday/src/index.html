@@ -6,16 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="./css/swiper-3.4.2.min.css">
     <link rel="stylesheet" href="./css/common.css">
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/swiper-3.4.2.min.css">
     <link rel="stylesheet" href="./icon/iconfont.css">
-<<<<<<< HEAD
     <link rel="stylesheet" href="./css/main.css">
-=======
 
->>>>>>> baoSwiper
 </head>
 
 <body>
@@ -46,12 +42,22 @@
         </nav>
     </header>
     <div class="main">
-<<<<<<< HEAD
         <div class="main-swiper swiper-container">
             <div class="swiper-wrapper">
                 <div class="swiper-slide frech-data">
                     <div class="frech-wrapper">
-                        <div class="banner">
+                        <div class="swiper-container banner">
+                            <div class="swiper-wrapper" id="banner">
+
+                            </div>
+                            <script id="swiper-tpl" type="text/x-handlebars-template">
+                                {{#each banner}}
+                                <div class="swiper-slide">
+                                    <img src="{{img}}" alt="">
+                                </div>
+                                {{/each}}
+                            </script>
+                            <div class="swiper-pagination  radio"></div>
                         </div>
                         <div class="listContent">
                             <div class="listWrap">
@@ -77,29 +83,31 @@
                             </div>
                             {{/addindex}} {{/addindex}} {{/each}}
                         </script>
+
+                        <script type='text/x-handlebars-template' id="listAdd">
+                            {{#each this}} {{#maxlen @index}}
+                            <div class="list-item">
+                                <div class="listImg">
+                                    <img src="{{image}}" alt="">
+                                </div>
+                                <div class="listText">
+                                    <p>午餐肉200克</p>
+                                    <p>全新公寓附近卡卡</p>
+                                    <div class="tag-span">
+                                        <span>超值特惠</span>
+                                        <span>超值特惠</span>
+                                    </div>
+                                    <p class="prise">$122</p>
+                                </div>
+                            </div>
+                            {{/maxlen}} {{/each}}
+                        </script>
                     </div>
                 </div>
                 <div class="swiper-slide">222</div>
                 <div class="swiper-slide">33333</div>
             </div>
         </div>
-=======
-        <div class="swiper-container banner">
-            <div class="swiper-wrapper">
-
-            </div>
-            <script id="swiper-tpl" type="text/x-handlebars-template">
-                {{#each banner}}
-                <div class="swiper-slide">
-                    <img src="{{img}}" alt="">
-                </div>
-                {{/each}}
-
-            </script>
-            <div class="swiper-pagination  radio"></div>
-        </div>
-        <div class="listContent"></div>
->>>>>>> baoSwiper
     </div>
 
 
@@ -124,19 +132,15 @@
 
     <script src="./libs/jquery.min.js"></script>
     <script src="./libs/bscroll.js"></script>
-<<<<<<< HEAD
-    <script src="./libs/jquery.min.js"></script>
     <script src="./libs/handlebars.min.js"></script>
-    <script src="./libs/swiper.min.js"></script>
     <script src="./libs/iscroll.js"></script>
     <script src="./libs/js/footer.js"></script>
-
-=======
     <script src="./libs/swiper.min.js"></script>
-    <script src="./libs/handlebars.min.js"></script>
     <script src="./app/index.js"></script>
->>>>>>> baoSwiper
     <script>
+        var len = 10;
+        var maxlen = len;
+        var listData = null;
         //顶部nav start
         var list = document.querySelector(".list");
         var lis = list.querySelectorAll("li");
@@ -165,9 +169,18 @@
         //顶部nav end
 
         //主题内容 start
-        new BScroll('.frech-data', {
+        let mainscroll = new BScroll('.frech-data', {
             scrollY: true,
-            scrollX: false
+            scrollX: false,
+            probeType: 6
+        })
+
+        mainscroll.on("scroll", function(e) {
+            if ($(".listWrap .list-item").length * $(".listWrap .list-item").eq(0).height() < -e.y + 30) {
+                maxlen = len;
+                maxlen += 4;
+                milkList(listData, "add", maxlen);
+            }
         })
 
 
@@ -193,7 +206,8 @@
                 url: '/data',
                 dataType: 'json',
                 success: function(data) {
-                    milkList(data.products);
+                    listData = data.products;
+                    milkList(listData);
                 },
                 error: function() {
                     console.log('not find data');
@@ -202,27 +216,41 @@
         });
 
         //渲染页面
-        function milkList(data) {
-            var list = $('#list').html();
-            Handlebars.registerHelper("addindex", function(ind, max, options) {
-                if (ind !== 'undefined') {
-
-                    if (ind == 0) {
+        function milkList(data, add, maxlen) {
+            if (!add) {
+                let list = $('#list').html();
+                Handlebars.registerHelper("addindex", function(ind, max, options) {
+                    if (ind !== 'undefined') {
+                        if (ind == 0) {
+                            return options.fn(this);
+                        } else {
+                            return options.inverse(this);
+                        }
+                    } else {
+                        if (max < len) {
+                            return options.fn(this);
+                        } else {
+                            return options.inverse(this);
+                        }
+                    }
+                })
+                let template = Handlebars.compile(list);
+                let html = template(data);
+                $('.listWrap').append(html);
+            } else {
+                let list = $('#listAdd').html();
+                Handlebars.registerHelper("maxlen", function(ind, options) {
+                    if (ind > len && ind < maxlen) {
                         return options.fn(this);
                     } else {
                         return options.inverse(this);
                     }
-                } else {
-                    if (max < 10) {
-                        return options.fn(this);
-                    } else {
-                        return options.inverse(this);
-                    }
-                }
-            })
-            var template = Handlebars.compile(list);
-            var html = template(data);
-            $('.listWrap').append(html);
+                })
+                let template = Handlebars.compile(list);
+                let html = template(data);
+                $('.listWrap').append(html);
+                len += 4;
+            }
         }
         //主题内容 end
     </script>

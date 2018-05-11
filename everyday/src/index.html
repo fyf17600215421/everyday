@@ -26,7 +26,7 @@
         </div>
         <nav class="nav">
             <div class="ulul" style="touch-action: none;">
-                <ul class="list" style="width: 529.96px; transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1); transition-duration: 0ms; transform: translate(0px, 0px) translateZ(0px);">
+                <ul class="list">
                     <li class="active">水果</li>
                     <li>蔬菜</li>
                     <li>乳品</li>
@@ -107,19 +107,17 @@
     <script src="./libs/iscroll.js"></script>
 
     <script>
-<<<<<<< HEAD
+        //顶部nav start
         var list = document.querySelector(".list");
         var lis = list.querySelectorAll("li");
         var sum = 0;
         for (let i = 0; i < lis.length; i++) {
-            sum += lis[i].offsetWidth;
-            console.log(lis[i])
-
+            sum += $(lis[i]).outerWidth(true);
             lis[i].onclick = function() {
                 change(i);
             }
-
         }
+        list.style.width = sum + "px";
 
         var myScroll = new BScroll(".ulul", {
             scrollY: false,
@@ -133,14 +131,11 @@
             }
             lis[ind].classList.add("active")
             myScroll.scrollToElement(lis[ind], 100, true, true)
-=======
-        var Bscroll = new BScroll(".ulul", {
-            scrollY: false,
-            scrollX: true,
-            click: true
-        });
+        }
+        //顶部nav end
 
-        var Bscroll = new BScroll('.frech-data', {
+        //主题内容 start
+        new BScroll('.frech-data', {
             scrollY: true,
             scrollX: false
         })
@@ -151,12 +146,12 @@
             on: {
                 slideChangeTransitionStart: function() {
                     var ind = this.activeIndex;
-                    $('.list span').eq(ind).addClass('active').siblings().removeClass('active');
+                    $('.list li').eq(ind).addClass('active').siblings().removeClass('active');
                 }
             }
         });
         //tab点击切换swiper
-        $('.list').on('click', 'span', function() {
+        $('.list').on('click', 'li', function() {
             var ind = $(this).index();
             $(this).addClass('active').siblings().removeClass('active');
             mySwiper.slideTo(ind);
@@ -178,7 +173,6 @@
 
         //渲染页面
         function milkList(data) {
-            console.log(data);
             var list = $('#list').html();
             Handlebars.registerHelper("addindex", function(ind, max, options) {
                 if (ind !== 'undefined') {
@@ -199,8 +193,8 @@
             var template = Handlebars.compile(list);
             var html = template(data);
             $('.listWrap').append(html);
->>>>>>> aheng
         }
+        //主题内容 end
     </script>
 </body>
 

@@ -82,7 +82,7 @@ body {
 .header .nav .ulul .list li {
   flex-shrink: 0;
   padding: .1rem 0;
-  margin: 0 .3rem;
+  margin: 0 .14rem;
   font-size: .14rem;
   box-sizing: border-box;
 }
@@ -92,9 +92,9 @@ body {
   border-bottom: 3px solid #ed518b;
 }
 
-.header .nav li.iconfont {
+.header .nav span.iconfont {
   width: 20%;
-  text-indent: 11%;
+  text-indent: 6%;
   line-height: .4rem;
   color: #adadad;
 }

@@ -1,7 +1,7 @@
 var footer = document.getElementsByClassName('footer')[0];
 var dlLen = footer.children;
 
-function change() {
+function footerChange() {
     for (var i = 0; i < dlLen.length; i++) {
         dlLen[i].className = '';
     }
@@ -13,6 +13,6 @@ for (var i = 0; i < dlLen.length; i++) {
 
     dlLen[i].onclick = function() {
         index = this.index;
-        change()
+        footerChange()
     }
 }

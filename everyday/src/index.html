@@ -6,15 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="./css/swiper-3.4.2.min.css">
     <link rel="stylesheet" href="./css/common.css">
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/swiper-3.4.2.min.css">
     <link rel="stylesheet" href="./icon/iconfont.css">
+<<<<<<< HEAD
     <link rel="stylesheet" href="./css/main.css">
+=======
+
+>>>>>>> baoSwiper
 </head>
 
 <body>
-    <header class="header">
+    <header class="header" id="head">
         <div class="head">
             <span></span>
             <p><span><i>1</i> 小时达</span>中关村软件园南站</p>
@@ -41,6 +46,7 @@
         </nav>
     </header>
     <div class="main">
+<<<<<<< HEAD
         <div class="main-swiper swiper-container">
             <div class="swiper-wrapper">
                 <div class="swiper-slide frech-data">
@@ -77,6 +83,23 @@
                 <div class="swiper-slide">33333</div>
             </div>
         </div>
+=======
+        <div class="swiper-container banner">
+            <div class="swiper-wrapper">
+
+            </div>
+            <script id="swiper-tpl" type="text/x-handlebars-template">
+                {{#each banner}}
+                <div class="swiper-slide">
+                    <img src="{{img}}" alt="">
+                </div>
+                {{/each}}
+
+            </script>
+            <div class="swiper-pagination  radio"></div>
+        </div>
+        <div class="listContent"></div>
+>>>>>>> baoSwiper
     </div>
 
 
@@ -99,14 +122,20 @@
         </dl>
     </footer>
 
-
+    <script src="./libs/jquery.min.js"></script>
     <script src="./libs/bscroll.js"></script>
+<<<<<<< HEAD
     <script src="./libs/jquery.min.js"></script>
     <script src="./libs/handlebars.min.js"></script>
     <script src="./libs/swiper.min.js"></script>
     <script src="./libs/iscroll.js"></script>
     <script src="./libs/js/footer.js"></script>
 
+=======
+    <script src="./libs/swiper.min.js"></script>
+    <script src="./libs/handlebars.min.js"></script>
+    <script src="./app/index.js"></script>
+>>>>>>> baoSwiper
     <script>
         //顶部nav start
         var list = document.querySelector(".list");

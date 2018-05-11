@@ -104,6 +104,29 @@ body {
   overflow: scroll;
 }
 
+.banner {
+  width: 100%;
+  height: auto;
+}
+
+.banner .swiper-slide {
+  width: 100%;
+  height: 100%;
+}
+
+.banner .swiper-slide > img {
+  width: 100%;
+  height: 100%;
+}
+
+.banner .radio {
+  width: 40px;
+  margin-left: 85%;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  color: #fff;
+}
+
 .footer {
   width: 100%;
   display: flex;
